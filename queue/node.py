@@ -25,7 +25,7 @@ class LinkedList:
             self.head = node
             self.tail = node
         else:
-            node.set_next(self.head)
+            self.head.set_next(node)
             self.head = node
 
     def remove_from_head(self):
