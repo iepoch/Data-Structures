@@ -1,6 +1,6 @@
 class Node:
 
-    def __init__(self, value, next_node):
+    def __init__(self, value=None, next_node=None):
         self.value = value
         self.next_node = next_node
 
@@ -16,17 +16,18 @@ class Node:
 
 class LinkedList:
 
-    def __init__(self, node=None):
-        self.head = node
-        self.tail = node
+    def __init__(self):
+        self.head = None
+        self.tail = None
 
-    def add_to_head(self, node):
-        if self.head == None:
-            self.head = node
-            self.tail = node
+    def add_to_tail(self, value):
+        new_node = Node(value)
+        if self.tail == None:
+            self.head = new_node
+            self.tail = new_node
         else:
-            self.head.set_next(node)
-            self.head = node
+            self.tail.set_next(new_node)
+            self.tail = new_node
 
     def remove_from_head(self):
         val = None
