@@ -63,8 +63,8 @@ class DoublyLinkedList:
 
     def remove_from_head(self):
         prev_node = self.head
-        if self.length == 0:
-            return
+        if self.head == None:
+            return None
         else:
             new_head = self.head.next
             self.head.delete()
