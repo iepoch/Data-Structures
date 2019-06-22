@@ -43,7 +43,7 @@ the list's head and tail nodes."""
 
 
 class DoublyLinkedList:
-    def __init__(self, node=None): 
+    def __init__(self, node=None):
         self.head = node
         self.tail = node
         self.length = 1 if node is not None else 0
@@ -86,7 +86,7 @@ class DoublyLinkedList:
     def remove_from_tail(self):
         if not self.head and not self.tail:
             return None
-        self.length -=1 
+        self.length -= 1
         if self.head == self.tail:
             cur_tail = self.tail
             self.head = None
@@ -96,8 +96,7 @@ class DoublyLinkedList:
         self.tail = self.tail.prev
         self.tail.next = None
         return cur_tail.value
-    
-    
+
     def move_to_front(self, node):
         if node is self.head:
             return
@@ -108,7 +107,7 @@ class DoublyLinkedList:
             node.delete()
             self.length -= 1
         self.add_to_head(value)
-            # pass
+        # pass
 
     def move_to_end(self, node):
         if self.length > 1 and node != self.tail:
@@ -118,13 +117,12 @@ class DoublyLinkedList:
             self.tail = self.tail.next
             self.head = self.head if node != self.head else cur_node.next
 
-
     def delete(self, node):
-        self.length -=1
+        self.length -= 1
         if not self.head and not self.tail:
             return
         elif self.head == self.tail:
-            self.head= None
+            self.head = None
             self.tail = None
         elif self.head == node:
             self.head = node.next
@@ -134,10 +132,9 @@ class DoublyLinkedList:
             node.delete()
         else:
             node.delete()
-            
-            
+
     def get_max(self):
-        if not self.head:
+        if self.head == None:
             return None
         cur_max = self.head.value
         cur_node = self.head
