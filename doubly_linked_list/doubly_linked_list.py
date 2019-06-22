@@ -144,7 +144,7 @@ class DoublyLinkedList:
         while cur_node:
             if cur_node.value > cur_max:
                 cur_max = cur_node.value
-                cur_node = cur_node.next
+            cur_node = cur_node.next
         return cur_max
         # cur_max = self.head.value
         # cur_node = self.head
