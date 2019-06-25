@@ -52,12 +52,8 @@ class DoublyLinkedList:
         return self.length
 
     def add_to_head(self, value):
-      # create a  'ListNode' w/value
-      # node.next -> insert new value
-      # self.head.prev -> Update the Previous Node first
-      # self.head   -> set the value with new node value
         new_node = ListNode(value)
-        if self.head is None:
+        if self.head == None:
             self.head = new_node
             self.tail = new_node
         else:
@@ -66,58 +62,92 @@ class DoublyLinkedList:
         self.length += 1
 
     def remove_from_head(self):
-        if self.head == None:
+        prev_node = self.head
+        if not self.head and not self.tail:
             return None
-        node = self.head
-        self.head.delete()
-        self.head = node.next
-        return node.value
+        else:
+            new_head = self.head.next
+            self.head.delete()
+            self.head = new_head
+            self.tail = self.tail if self.head is not None else None
+            self.length -= 1
+        return prev_node.value
 
     def add_to_tail(self, value):
-        node = ListNode(value)
-        if self.head is None:
-            self.head = node
-            self.tail = node
+        new_node = ListNode(value)
+        if self.tail == None:
+            self.tail = new_node
+            self.head = new_node
         else:
-            self.tail.next = node
-            node.prev = self.tail
-            self.tail = node
+            self.tail.insert_after(value)
+            self.tail = self.tail.next
+        self.length += 1
 
     def remove_from_tail(self):
-        if self.tail == None:
-            node_tail = self.tail
-            node_tail.delete()
-            self.tail = node_tail.prev
-            return node_tail.value
+        if not self.head and not self.tail:
+            return None
+        self.length -= 1
+        if self.head == self.tail:
+            cur_tail = self.tail
+            self.head = None
+            self.tail = None
+            return cur_tail.value
+        cur_tail = self.tail
+        self.tail = self.tail.prev
+        self.tail.next = None
+        return cur_tail.value
 
     def move_to_front(self, node):
-            # remove 'node' ... ListNode delete () But need to save value 1st
-        value = node.value  # set value to 2
-        node.delete()
+        if node is self.head:
+            return
+        value = node.value
+        if node is self.tail:
+            self.remove_from_tail()
+        else:
+            node.delete()
+            self.length -= 1
         self.add_to_head(value)
-        # add 'node' to head ... addtohead()
+        # pass
 
     def move_to_end(self, node):
-            # remove 'node' ... ListNode delete () But need to save value 1st
-        value = node.value  # set value to 2
-        node.delete()
-
-        self.add_to_tail(value)
+        if self.length > 1 and node != self.tail:
+            cur_node = node
+            node.delete()
+            self.tail.insert_after(cur_node.value)
+            self.tail = self.tail.next
+            self.head = self.head if node != self.head else cur_node.next
 
     def delete(self, node):
-        node.delete()
+        self.length -= 1
+        if not self.head and not self.tail:
+            return
+        elif self.head == self.tail:
+            self.head = None
+            self.tail = None
+        elif self.head == node:
+            self.head = node.next
+            node.delete()
+        elif self.tail == node:
+            self.tail = node.prev
+            node.delete()
+        else:
+            node.delete()
 
     def get_max(self):
         if self.head == None:
             return None
-        else:
-            curr_max = self.head.value
-            cur_node = self.head
-            # loop through nodes until reach tail
-            while cur_node.next:
-                cur_node = cur_node.next
-                # if we find a node > cur_max, update cur_max
-                if cur_node.value > curr_max:
-                    curr_max = cur_node.value
-
-            return curr_max
+        cur_max = self.head.value
+        cur_node = self.head
+        while cur_node:
+            if cur_node.value > cur_max:
+                cur_max = cur_node.value
+            cur_node = cur_node.next
+        return cur_max
+        # cur_max = self.head.value
+        # cur_node = self.head
+        # while cur_node.next:
+        #     cur_node = cur_node.next
+        #     if cur_node.value > cur_max:
+        #             cur_max = cur_node.value
+        #     return cur_max
+        # # pass
