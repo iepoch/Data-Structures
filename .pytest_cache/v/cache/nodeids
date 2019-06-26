@@ -1,0 +1,13 @@
+[
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_get_max",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_list_add_to_head",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_list_add_to_tail",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_list_delete",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_list_move_to_end",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_list_move_to_front",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_list_remove_from_head",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_list_remove_from_tail",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_node_delete",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_node_insert_after",
+  "doubly_linked_list/test_doubly_linked_list.py::DoublyLinkedListTests::test_node_insert_before"
+]
