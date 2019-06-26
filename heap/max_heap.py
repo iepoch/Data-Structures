@@ -4,16 +4,22 @@ class Heap:
 
     def insert(self, value):
         self.storage.append(value)
-        self._bubble_up(len(self.storage) - 1)
+        self._bubble_up(self.get_size() - 1)
 
     def delete(self):
         # first to pop anything off the heap. Swap the Max value to end of heap
         # delete this value and save it - return it as a max value
-        # then bubble down the value at index 0 to it's proper position
+        # then bubble down the value at index 0 to it's proper position\
+        if self.storage is None:
+            return None
         removed = self.storage[0]
-        self.storage[0] = self.storage[len(self.storage) - 1]
+        print(removed)
+        self.storage[0] = self.storage[self.get_size()- 1]
+        print(self.storage[0])
         self.storage.pop()
+        print(self.storage)
         self._sift_down(0)
+        # print(self._sift_down)
         return removed
 
     def get_max(self):
@@ -36,16 +42,16 @@ class Heap:
         # check if current value is greater than or less than parent value
 
     def _sift_down(self, index):
-        left = index * 2
-        right = index * 2 + 1
-
-        largest = index
-        if index == 0:
-            return None
-        if self.get_max > left and self.storage[largest] < self.storage[left]:
-            largest = left
-        if self.get_max > right and self.storage[largest] < self.storage[right]:
-            largest = right
-        if largest != index:
-            self.storage[index], self.storage[largest] = self.storage[largest], self.storage[index]
-            self._sift_down(largest)
+       while index * 2 + 1 <= self.get_size() - 1:
+            largest = self._max_child(index)
+            if self.storage[index] < self.storage[largest]:
+                self.storage[index], self.storage[largest] = self.storage[largest], self.storage[index]
+            index = largest
+    #added function _max_child  to get the maxium size of the child and maintain the order of the heap
+    def _max_child(self, index):
+        right = index * 2 + 2 
+        left = index * 2 + 1
+        if right > self.get_size() - 1:
+            return left
+        else:
+            return left if self.storage[left] > self.storage[right] else right
